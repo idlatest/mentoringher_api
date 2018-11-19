@@ -1,0 +1,44 @@
+{
+    "require": {
+        "slim/slim": "^3.9",
+        "vlucas/phpdotenv": "^2.4",
+        "firebase/php-jwt": "^5.0",
+        "league/fractal": "^0.17.0",
+        "illuminate/pagination": "^5.6",
+        "illuminate/database": "^5.6",
+        "tuupola/slim-jwt-auth": "^3.0",
+        "intervention/image": "^2.4",
+        "respect/validation": "^1.1",
+        "robmorgan/phinx": "^0.10.6",
+        "fzaninotto/faker": "^1.8",
+        "monolog/monolog": "^1.23",
+        "ramsey/uuid": "^3.8",
+        "illuminate/events": "^5.7"
+    },
+    "autoload": {
+    	"psr-4": {
+    		"App\\": "app/"
+        },
+        "files": [
+            "app/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "classmap": ["database/"],
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "process-timeout" : 0,
+        "php": "5.6"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env'); \""
+        ],
+        "start": "php -S localhost:8000 -t public public/index.php",
+        "test": "vendor/bin/phpunit",
+        "refresh-database": "php vendor/bin/phinx rollback -t0; php vendor/bin/phinx migrate; php vendor/bin/phinx seed:run"
+    }  
+}
